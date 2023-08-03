@@ -1,0 +1,14 @@
+{
+  "name": "pkg",
+  "version": "1.0.1",
+  "description": "create packages using make",
+  "author": "Clay Risser <clayrisser@gmail.com>",
+  "repo": "git@gitlab.com:bitspur/mkpm/packages.git",
+  "source": "https://gitlab.com/bitspur/mkpm/pkg.git",
+  "packages": {
+    "default": {}
+  },
+  "repos": {
+    "default": "https://gitlab.com/bitspur/mkpm/packages.git"
+  }
+}

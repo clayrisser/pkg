@@ -6,6 +6,7 @@
     "makefiles",
     "mkpm",
     "nixpkgs",
+    "Risser",
     "stdenv"
   ],
   "psi-header.variables": [["projectCreationYear", "2021"]],
@@ -95,5 +96,8 @@
   "psi-header.license-reference": {
     "uri": "../LICENSE",
     "uriIsLocalFile": true
+  },
+  "files.associations": {
+    "Mkpmfile": "makefile"
   }
 }
