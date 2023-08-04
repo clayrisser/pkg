@@ -1,10 +1,10 @@
-# File: /Makefile
+# File: /Mkpmfile
 # Project: mkpm-pkg
 # File Created: 07-10-2021 16:58:49
 # Author: Clay Risser
 # -----
-# Last Modified: 12-06-2022 09:16:42
-# Modified By: Clay Risser
+# Last Modified: 04-08-2023 17:54:06
+# Modified By: Ajith Kumar
 # -----
 # Risser Labs LLC (c) Copyright 2021
 #
@@ -20,8 +20,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+include $(MKPM)/mkpm
 include mkpm.mk
-ifneq (,$(MKPM_READY))
 include $(MKPM)/gnu
 
 PACK_DIR := $(MKPM_TMP)/pack
@@ -33,25 +33,6 @@ DEPS_APT := cowsayzz|https://example.com hahaha
 .PHONY: info
 info:
 	@echo Hello, world!
-
-.PHONY: pack
-pack:
-	@rm -rf $(PACK_DIR) $(NOFAIL) && mkdir -p $(PACK_DIR)
-	@cp main.mk $(PACK_DIR)
-	@cp mkpm.mk $(PACK_DIR)
-	@cp LICENSE $(PACK_DIR) $(NOFAIL)
-	@for f in $(shell [ "$(MKPM_FILES_REGEX)" = "" ] || \
-		$(FIND) . -type f -not -path './.git/*' | $(SED) 's|^\.\/||g' | \
-		$(GREP) -E "$(MKPM_FILES_REGEX)") \
-		$(shell $(GIT) ls-files | $(GREP) -E "^README[^\/]*$$"); do \
-			PARENT_DIR=$$(echo $$f | $(SED) 's|[^\/]\+$$||g' | $(SED) 's|\/$$||g') && \
-			([ "$$PARENT_DIR" != "" ] && mkdir -p $(PACK_DIR)/$$PARENT_DIR || true) && \
-			cp $$f $(PACK_DIR)/$$f; \
-		done
-	@tar -cvzf $(MKPM_PKG_NAME).tar.gz -C $(PACK_DIR) .
-
-.PHONY: publish
-publish: pack
 
 .PHONY: clean
 clean:
@@ -69,5 +50,3 @@ deps-%:
 
 include main.mk
 -include $(call actions)
-
-endif
