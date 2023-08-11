@@ -1,5 +1,4 @@
 .depsignore
-/*.tar.gz
 
 # mkpm
 .mkpm/mkpm
